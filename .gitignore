@@ -16,3 +16,5 @@
 /task/task.Android/obj
 /task/task.iOS/bin
 /task/task.iOS/obj
+/DBSqlLite/DB/bin/Debug/net6.0
+/DBSqlLite/DB/obj
