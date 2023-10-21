@@ -1,0 +1,18 @@
+﻿################################################################################
+# Este arquivo .gitignore foi criado automaticamente pelo Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/Core/bin
+/Core/obj
+/DB/DB/bin/Debug/net6.0
+/DB/DB/obj
+/DBRealm/bin
+/DBRealm/obj
+/Repositorios/obj
+/task/task/bin
+/task/task/obj
+/task/task.Android/bin
+/task/task.Android/obj
+/task/task.iOS/bin
+/task/task.iOS/obj
