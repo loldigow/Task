@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="task.controls.DateView">
+    <ContentView.Content>
+        <Frame CornerRadius="15" 
+               BackgroundColor="{AppThemeBinding Light=#122B40, Dark=#122b40}" 
+               BorderColor="{AppThemeBinding Light=#122B40, Dark=#122b40}" 
+               HasShadow="True"
+               Margin="10">
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"></TapGestureRecognizer>
+            </Frame.GestureRecognizers>
+            <StackLayout Spacing="-5" Padding="15,10,15,10">
+                <DatePicker IsVisible="false" 
+                            x:Name="SeletorData"
+                            Date="{Binding Data}"/>
+                <Label x:Name="LabelDia"
+                       TextColor="White"
+                       HorizontalTextAlignment="Center"
+                       FontSize="35" 
+                       ></Label>
+                
+                <Label x:Name="LabelMes"
+                       HorizontalTextAlignment="Center"
+                       TextColor="White"
+                       FontSize="15"/>
+            </StackLayout>
+        </Frame>
+    </ContentView.Content>
+</ContentView>

@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:controls="clr-namespace:task.controls" xmlns:viewmodel="clr-namespace:task.ViewModel"
+             Title="{Binding NomeTela}"
+             BackgroundColor="{AppThemeBinding Light=#DFECF6, Dark=#225177}"
+             x:Class="task.View.DetalheTask">
+    <ContentPage.Content>
+        <StackLayout Spacing="0">
+            <StackLayout VerticalOptions="FillAndExpand">
+
+                <controls:Input Texto="{Binding DescricaoTask, Mode=TwoWay}"
+                                Descricao="Descrição da task:"
+                                Padding="20,20,20,5"></controls:Input>
+                <controls:DataHoraInput Padding="20,5" 
+                                        Data="{Binding DataInicio, Mode=TwoWay}" 
+                                        Hora="{Binding HoraInicio, Mode=TwoWay}" 
+                                        DescricaoInput="Data inicio:"></controls:DataHoraInput>
+                <controls:DataHoraInput Padding="20,5" 
+                                        Data="{Binding DataFim, Mode=TwoWay}" 
+                                        Hora="{Binding HoraFim, Mode=TwoWay}" 
+                                        DescricaoInput="Data Fim:"></controls:DataHoraInput>
+                <controls:Input Texto="{Binding ObservacaoTask, Mode=TwoWay}"
+                                Descricao="Observações:"
+                                MultiLine="True"
+                                Padding="20,20,20,5"></controls:Input>
+            </StackLayout>
+            <StackLayout VerticalOptions="End" Margin="10">
+                <Button Text="{Binding DescricaoBotao}" 
+                        TextColor="White" 
+                        CornerRadius="15" 
+                        FontSize="15"
+                        FontAttributes="Bold"
+                        HeightRequest="65" 
+                        Command="{Binding SalveCommand}"
+                        BackgroundColor="#122B40" 
+                        Margin="5">
+                </Button>
+                <Button Text="Excluir" 
+                        TextColor="White" 
+                        CornerRadius="15" 
+                        FontSize="15"
+                        FontAttributes="Bold"
+                        HeightRequest="65" 
+                        Command="{Binding ExcluaCommand}"
+                        IsVisible="{Binding Finalizado}"
+                        BackgroundColor="#9E0000" 
+                        Margin="5">
+                </Button>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Name="input"
+             x:Class="task.controls.Input">
+    <ContentView.Content>
+        <Frame BackgroundColor="{AppThemeBinding Light=White, Dark=#1c4563}" 
+               Padding="5" 
+               CornerRadius="10"
+               HasShadow="False">
+            <Grid>
+                <Label x:Name="LabelDescricao" 
+                       FontAttributes="Bold"
+                       TextColor="LightGray"
+                       FontSize="20"
+                       Margin="5,15,0,0"
+                />
+                <Entry Margin="0,10,0,0"
+                       Focused="LabelTexto_Focused"
+                       Unfocused="LabelTexto_Unfocused"
+                       x:Name="LabelTexto"
+                       Text="{Binding Source={x:Reference input},Path=Texto, Mode=TwoWay}"
+                />
+                <Editor x:Name="EditorTexto" 
+                        IsVisible="false"
+                        Margin="0,10,0,0"
+                        Focused="LabelTexto_Focused"
+                        Unfocused="LabelTexto_Unfocused"
+                         FontSize="20"
+                        Text="{Binding Source={x:Reference input},Path=Texto, Mode=TwoWay}"
+                />
+            </Grid>
+        </Frame>
+    </ContentView.Content>
+</ContentView>

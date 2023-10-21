@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:controls="clr-namespace:task.controls" 
+             xmlns:viewmodel="clr-namespace:task.ViewModel"
+             NavigationPage.HasNavigationBar="False"
+             x:Name="PaginaDeTasks"
+             x:Class="task.View.TaskPage">
+    <ContentPage.BindingContext>
+        <viewmodel:TaskViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <Grid BackgroundColor="{AppThemeBinding Light=#DFECF6, Dark=#1c4563 } " VerticalOptions="FillAndExpand">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="4*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+                <StackLayout Grid.Column="0" VerticalOptions="Center"
+                                             HorizontalOptions="StartAndExpand">
+                    <controls:TitleLabel Margin="20" 
+                                            HorizontalOptions="FillAndExpand"
+                                            CorTexto="{AppThemeBinding Light=#122b40, Dark=White}"
+                                            Titulo="{Binding DiaDaSemana}"
+                                            Valor="{Binding DescricaoQuantidadeTasks}"/>
+                </StackLayout>
+                <StackLayout Grid.Column="1" 
+                             
+                             VerticalOptions="Center"
+                             HorizontalOptions="Start">
+
+                    <controls:DateView Data="{Binding Data}"
+                                       OnDataChanged="{Binding AlterouDataCommand}"/>
+                </StackLayout>
+            </Grid>
+            <Frame Grid.Row="1" 
+                   VerticalOptions="FillAndExpand"
+                   HorizontalOptions="FillAndExpand"
+                   CornerRadius="25"
+                   BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#225177}"
+                   Margin="1,0,1,-20">
+                <Frame.GestureRecognizers>
+                    <SwipeGestureRecognizer Direction="Left" Command="{Binding GestoCommand}" CommandParameter="Left"></SwipeGestureRecognizer>
+                    <SwipeGestureRecognizer Direction="Right" Command="{Binding GestoCommand}" CommandParameter="Right"></SwipeGestureRecognizer>
+                </Frame.GestureRecognizers>
+                <Grid>
+                    <CollectionView ItemsSource="{Binding ListaTasksDoDia}">
+                        <CollectionView.EmptyView>
+                            <ContentView>
+                                <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                                    <Image Source="{AppThemeBinding Light=iconTask.png, Dark=iconTaskLight.png}" WidthRequest="60"/>
+                                    <Label Text="Nada aqui ainda"></Label>
+                                </StackLayout>
+                            </ContentView>
+                        </CollectionView.EmptyView>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout Orientation="Horizontal" Padding="10">
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding Source={x:Reference PaginaDeTasks}, Path=BindingContext.AbraTaskCommand}" 
+                                                                  CommandParameter="{Binding .}"/>
+                                    </StackLayout.GestureRecognizers>
+                                    <StackLayout>
+                                        <controls:CheckBoxCustom IsChecked="{Binding Realizada}" 
+                                                                 IsEnabled="{Binding Realizada, Converter={StaticResource InverseBoleanConverter}}"
+                                                                 CheckedCommand="{Binding Source={x:Reference PaginaDeTasks}, Path=BindingContext.ConcluaTarefaCommand}"
+                                                                 CheckedCommandParameter="{Binding .}"
+                                                  Color="{AppThemeBinding Light=#122B40, Dark=White}">
+
+                                        </controls:CheckBoxCustom>
+                                    </StackLayout>
+                                    <StackLayout>
+                                        <controls:TitleLabel Titulo="{Binding NomeTask}"
+                                                             CorTexto="{Binding CorTask}"
+                                                             Valor="{Binding HorarioFormatado}"></controls:TitleLabel>
+                                    </StackLayout>
+                                </StackLayout>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                    <Button VerticalOptions="End"
+                            HorizontalOptions="End"
+                            BorderColor="#122B40"
+                            BackgroundColor="#122B40"
+                            CornerRadius="50"
+                            Text="+"
+                            FontSize="30"
+                            TranslationY="-15"
+                            TextColor="White"
+                            WidthRequest="80"
+                            Command="{Binding CrieNovaTaskCommand}"
+                            HeightRequest="80"></Button>
+                </Grid>
+            </Frame>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

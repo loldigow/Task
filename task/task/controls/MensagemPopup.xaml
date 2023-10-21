@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<pages:PopupPage  xmlns:pages="http://rotorgames.com"
+                  xmlns="http://xamarin.com/schemas/2014/forms" 
+                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:controls="clr-namespace:task.controls"
+                  x:Class="task.controls.MensagemPopup">
+    <ContentView>
+        <Frame VerticalOptions="Center" 
+               HorizontalOptions="Center"
+               BackgroundColor="{AppThemeBinding Light=#DFECF6, Dark=#1c4563 }">
+            <StackLayout>
+                <controls:TitleLabel x:Name="Info"></controls:TitleLabel>
+                <StackLayout x:Name="PainelOk">
+                    <Button Text="Ok" 
+                        TextColor="White"
+                        Clicked="Button_Clicked"
+                        BackgroundColor="#122B40"
+                        ></Button>
+                </StackLayout>
+                <StackLayout x:Name="PainelSimNao">
+                    <Button x:Name="BotaoSim"
+                            TextColor="White"
+                            Clicked="Button_Clicked"
+                            CommandParameter="BotaoSim"
+                            BackgroundColor="#122B40"
+                            />
+                    <Button x:Name="BotaoNao"
+                            TextColor="White"
+                            Clicked="Button_Clicked"
+                            CommandParameter="BotaoNao"
+                            BackgroundColor="#122B40"
+                            />
+                </StackLayout>
+            </StackLayout>
+        </Frame>
+    </ContentView>
+</pages:PopupPage>

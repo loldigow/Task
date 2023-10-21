@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Name="DataHoraInputView"
+             x:Class="task.controls.DataHoraInput">
+    <ContentView.Content>
+        <Frame BackgroundColor="{AppThemeBinding Light=White, Dark=#1c4563}" 
+               Padding="0" 
+               CornerRadius="10"
+               HasShadow="False">
+            <StackLayout  Margin="10">
+                <Label Text="{Binding DescricaoInput}" x:Name="LabelDescricaoInput" Margin="0"></Label>
+                <StackLayout Orientation="Horizontal">
+                    <DatePicker IsVisible="false" x:Name="DataPicker" DateSelected="DataPicker_DateSelected"></DatePicker>
+                    <Label x:Name="LabelData"
+                       FontSize="20"
+                       HorizontalOptions="StartAndExpand">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="DataAcionada"></TapGestureRecognizer>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <TimePicker IsVisible="false" x:Name="HoraPicker" PropertyChanged="HoraPicker_PropertyChanged"></TimePicker>
+                    <Label x:Name="LabelHora"
+                       FontSize="20"
+                       HorizontalOptions="End">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="HoraEspecifica"></TapGestureRecognizer>
+                        </Label.GestureRecognizers>
+                    </Label>
+                </StackLayout>
+            </StackLayout>
+        </Frame>
+    </ContentView.Content>
+</ContentView>
