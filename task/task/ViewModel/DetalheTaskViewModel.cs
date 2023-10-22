@@ -20,13 +20,10 @@ namespace task.ViewModel
         string nomeTela;
 
         [ObservableProperty]
-        DateTime dataInicio;
+        DateTime dataTask;
 
         [ObservableProperty]
         TimeSpan horaInicio;
-
-        [ObservableProperty]
-        DateTime dataFim;
 
         [ObservableProperty]
         TimeSpan horaFim;
@@ -72,9 +69,8 @@ namespace task.ViewModel
             _id = task.Id;
             NomeTela = "Visualizar";
             DescricaoTask = task.NomeTask;
-            DataInicio = task.DataInicioTask.Date;
+            DataTask = task.DataInicioTask.Date;
             HoraInicio = task.DataInicioTask.TimeOfDay;
-            DataFim = task.DataFimTask.Date;
             HoraFim = task.DataFimTask.TimeOfDay;
             ObservacaoTask = task.ObservacaoTask;
             DescricaoBotao = task.Realizada ? FuncaoTaskEnum.Fechar : FuncaoTaskEnum.Concluir;
@@ -84,10 +80,11 @@ namespace task.ViewModel
         private void CrieNovaTask(DateTime? data = null)
         {
             NomeTela = "Nova task";
-            DataInicio = data.HasValue ? data.Value : DateTime.Now.Date;
+
+            DataTask = data.HasValue ? data.Value : DateTime.Now.Date;
             HoraInicio = new TimeSpan(DateTime.Now.Ticks);
-            DataFim = data.HasValue ? data.Value : DateTime.Now.Date;
             HoraFim = new TimeSpan(DateTime.Now.Ticks + 2600);
+
             DescricaoBotao = FuncaoTaskEnum.Salvar;
             _id = Guid.Empty;
         }
@@ -136,8 +133,8 @@ namespace task.ViewModel
                 MensagemPopup.ShowMessage("Erro","Descrição de atividade não pode estar vazia");
                 return false;
             }
-            var dataInicioTask = DataInicio.AddHours(HoraInicio.Hours).AddMinutes(HoraInicio.Minutes);
-            var dataFimTask = DataFim.AddHours(HoraFim.Hours).AddMinutes(HoraFim.Minutes);
+            var dataInicioTask = DataTask.AddHours(HoraInicio.Hours).AddMinutes(HoraInicio.Minutes);
+            var dataFimTask = DataTask.AddHours(HoraFim.Hours).AddMinutes(HoraFim.Minutes);
             if(dataFimTask < dataInicioTask)
             {
                 MensagemPopup.ShowMessage("Erro","Data fim atividade menor que data de inicio");
@@ -153,8 +150,8 @@ namespace task.ViewModel
                 Id = _id,
                 NomeTask = DescricaoTask,
                 Realizada = false,
-                DataInicioTask = DataInicio.Date.AddHours(HoraInicio.Hours).AddMinutes(HoraInicio.Minutes),
-                DataFimTask = DataFim.Date.AddHours(HoraFim.Hours).AddMinutes(HoraFim.Minutes),
+                DataInicioTask = DataTask.Date.AddHours(HoraInicio.Hours).AddMinutes(HoraInicio.Minutes),
+                DataFimTask = DataTask.Date.AddHours(HoraFim.Hours).AddMinutes(HoraFim.Minutes),
                 ObservacaoTask = ObservacaoTask
             };
         }

@@ -9,17 +9,23 @@ namespace task.controls
     public partial class DataHoraInput : ContentView
     {
         public static readonly BindableProperty DataProperty = BindableProperty.Create(nameof(Data), typeof(DateTime), typeof(DataHoraInput));
-        public static readonly BindableProperty HoraProperty = BindableProperty.Create(nameof(Hora), typeof(TimeSpan), typeof(DataHoraInput));
+        public static readonly BindableProperty HoraInicioProperty = BindableProperty.Create(nameof(HoraInicio), typeof(TimeSpan), typeof(DataHoraInput));
+        public static readonly BindableProperty HoraFimProperty = BindableProperty.Create(nameof(HoraFim), typeof(TimeSpan), typeof(DataHoraInput));
         public static readonly BindableProperty DescricaoInputProperty = BindableProperty.Create(nameof(DescricaoInput), typeof(string), typeof(DataHoraInput));
         public DateTime Data
         {
             get { return (DateTime)GetValue(DataProperty); }
             set { SetValue(DataProperty, value); }
         }
-        public TimeSpan Hora
+        public TimeSpan HoraInicio
         {
-            get { return (TimeSpan)GetValue(HoraProperty); }
-            set { SetValue(HoraProperty, value); }
+            get { return (TimeSpan)GetValue(HoraInicioProperty); }
+            set { SetValue(HoraInicioProperty, value); }
+        }
+        public TimeSpan HoraFim
+        {
+            get { return (TimeSpan)GetValue(HoraFimProperty); }
+            set { SetValue(HoraFimProperty, value); }
         }
         public string DescricaoInput
         {
@@ -40,10 +46,15 @@ namespace task.controls
             {
                 LabelData.Text = Data.ToString("dd/MM/yyyy");
             };
-            if (propertyName == nameof(Hora))
+            if (propertyName == nameof(HoraInicio))
             {
-                LabelHora.Text = Hora.ToString(@"hh\:mm");
-                HoraPicker.Time = TimeSpan.Parse(LabelHora.Text);
+                LabelHoraInicio.Text = HoraInicio.ToString(@"hh\:mm");
+                HoraInicioPicker.Time = TimeSpan.Parse(LabelHoraInicio.Text);
+            }
+            if (propertyName == nameof(HoraFim))
+            {
+                LabelHoraFim.Text = HoraFim.ToString(@"hh\:mm");
+                HoraFimPicker.Time = TimeSpan.Parse(LabelHoraFim.Text);
             }
             if (propertyName == nameof(DescricaoInput))
             {
@@ -56,9 +67,14 @@ namespace task.controls
             DataPicker.Focus();
         }
 
-        private void HoraEspecifica(object sender, EventArgs e)
+        private void HoraInicioEspecifica(object sender, EventArgs e)
         {
-            HoraPicker.Focus();
+            HoraInicioPicker.Focus();
+        }
+
+        private void HoraFimEspecifica(object sender, EventArgs e)
+        {
+            HoraFimPicker.Focus();
         }
 
         private void DataPicker_DateSelected(object sender, DateChangedEventArgs e)
@@ -72,7 +88,18 @@ namespace task.controls
             {
                 if (e.PropertyName == nameof(TimePicker.Time))
                 {
-                    Hora = input.Time;
+                    HoraInicio = input.Time;
+                }
+            }
+        }
+
+        private void HoraFimPicker_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (sender is TimePicker input)
+            {
+                if (e.PropertyName == nameof(TimePicker.Time))
+                {
+                    HoraFim = input.Time;
                 }
             }
         }

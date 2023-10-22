@@ -12,17 +12,29 @@
                                 Descricao="Descrição da task:"
                                 Padding="20,20,20,5"></controls:Input>
                 <controls:DataHoraInput Padding="20,5" 
-                                        Data="{Binding DataInicio, Mode=TwoWay}" 
-                                        Hora="{Binding HoraInicio, Mode=TwoWay}" 
+                                        
+                                        Data="{Binding DataTask, Mode=TwoWay}" 
+                                        HoraInicio="{Binding HoraInicio, Mode=TwoWay}" 
+                                        HoraFim="{Binding HoraFim, Mode=TwoWay}"
+                                        
                                         DescricaoInput="Data inicio:"></controls:DataHoraInput>
-                <controls:DataHoraInput Padding="20,5" 
-                                        Data="{Binding DataFim, Mode=TwoWay}" 
-                                        Hora="{Binding HoraFim, Mode=TwoWay}" 
-                                        DescricaoInput="Data Fim:"></controls:DataHoraInput>
+
                 <controls:Input Texto="{Binding ObservacaoTask, Mode=TwoWay}"
                                 Descricao="Observações:"
                                 MultiLine="True"
-                                Padding="20,20,20,5"></controls:Input>
+                                Padding="20,5,20,5"></controls:Input>
+                <Frame Margin="20,5,20,0" 
+                       CornerRadius="15"
+                       >
+                    <StackLayout>
+                        <CheckBox  />
+                        <StackLayout>
+                            <RadioButton Content="Bike" TextColor="#122B40"/>
+                            <RadioButton Content="Train" />
+                            <RadioButton Content="Walking" />
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
             </StackLayout>
             <StackLayout VerticalOptions="End" Margin="10">
                 <Button Text="{Binding DescricaoBotao}" 
