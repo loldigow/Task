@@ -27,12 +27,7 @@
                        CornerRadius="15"
                        >
                     <StackLayout>
-                        <CheckBox  />
-                        <StackLayout>
-                            <RadioButton Content="Bike" TextColor="#122B40"/>
-                            <RadioButton Content="Train" />
-                            <RadioButton Content="Walking" />
-                        </StackLayout>
+                        <controls:RepeteTask  ConfiguracoesDeRpeticao="{Binding ConfiguracoesDerRpeticao}"></controls:RepeteTask>
                     </StackLayout>
                 </Frame>
             </StackLayout>

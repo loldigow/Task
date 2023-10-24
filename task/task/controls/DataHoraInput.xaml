@@ -26,7 +26,7 @@
                 </StackLayout>
 
 
-                <StackLayout Spacing="0">
+                <StackLayout Spacing="0" x:Name="PainelHora">
 
                         <TimePicker IsVisible="false" x:Name="HoraInicioPicker" PropertyChanged="HoraPicker_PropertyChanged"></TimePicker>
                         <Label Text="Hora inicio:" FontSize="10"></Label>

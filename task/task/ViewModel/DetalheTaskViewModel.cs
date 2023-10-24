@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 using Core.Interfaces;
 using Core.Modelos;
 using System;
+using System.Linq;
 using task.controls;
 using task.Core;
 using task.Core.AppModel;
@@ -29,6 +30,9 @@ namespace task.ViewModel
         TimeSpan horaFim;
 
         [ObservableProperty]
+        ConfiguracoesDeRpeticao configuracoesDerRpeticao;
+
+        [ObservableProperty]
         string descricaoTask;
 
         [ObservableProperty]
@@ -39,6 +43,8 @@ namespace task.ViewModel
 
         [ObservableProperty]
         bool finalizado;
+
+
 
 
 
@@ -86,6 +92,7 @@ namespace task.ViewModel
             HoraFim = new TimeSpan(DateTime.Now.Ticks + 2600);
 
             DescricaoBotao = FuncaoTaskEnum.Salvar;
+            ConfiguracoesDerRpeticao = new();
             _id = Guid.Empty;
         }
 
@@ -97,9 +104,15 @@ namespace task.ViewModel
                 case FuncaoTaskEnum.Salvar:
                     if (ModelEhValida())
                     {
-                        var model = MapeieModel();
-                        _taskRepository.Salve(ref model);
-                        new Notificacao().AgendeNotificacao("Task", model.NomeTask, model.DataInicioTask);
+                        if (ConfiguracoesDerRpeticao.Repete)
+                        {
+                            SalveLoteDeTasks();
+                        }
+                        else
+                        {
+                            SalveTaskUnica();
+
+                        }
                     }
                     else return;
                     break;
@@ -112,6 +125,18 @@ namespace task.ViewModel
             Application.Current.MainPage.Navigation.PopAsync();
         }
 
+        private void SalveLoteDeTasks()
+        {
+           
+        }
+
+        private void SalveTaskUnica()
+        {
+            var model = MapeieModel();
+            _taskRepository.Salve(ref model);
+            new Notificacao().AgendeNotificacao("Task", model.NomeTask, model.DataInicioTask);
+        }
+
         [RelayCommand]
         void Exclua()
         {
@@ -120,9 +145,9 @@ namespace task.ViewModel
                 _taskRepository.Delete(_id);
                 Application.Current.MainPage.Navigation.PopAsync();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                MensagemPopup.ShowMessage("Erro",ex.Message);
+                MensagemPopup.ShowMessage("Erro", ex.Message);
             }
         }
 
@@ -130,16 +155,57 @@ namespace task.ViewModel
         {
             if (string.IsNullOrEmpty(DescricaoTask))
             {
-                MensagemPopup.ShowMessage("Erro","Descrição de atividade não pode estar vazia");
+                MensagemPopup.ShowMessage("Erro", "Descrição de atividade não pode estar vazia");
                 return false;
             }
-            var dataInicioTask = DataTask.AddHours(HoraInicio.Hours).AddMinutes(HoraInicio.Minutes);
-            var dataFimTask = DataTask.AddHours(HoraFim.Hours).AddMinutes(HoraFim.Minutes);
-            if(dataFimTask < dataInicioTask)
+            var dataInicioTask = DataTask.Date.AddHours(HoraInicio.Hours).AddMinutes(HoraInicio.Minutes);
+            var dataFim = ConfiguracoesDerRpeticao.DataFim.Date.AddHours(HoraInicio.Hours).AddMinutes(HoraInicio.Minutes);
+
+            if (ConfiguracoesDerRpeticao.Repete)
             {
-                MensagemPopup.ShowMessage("Erro","Data fim atividade menor que data de inicio");
-                return false;
+                if (ConfiguracoesDerRpeticao.Diariamente)
+                {
+                    if (dataFim < dataInicioTask.AddDays(1))
+                    {
+                        MensagemPopup.ShowMessage("Erro", "Data de termino para repetição deve conter pelo menos um dia de repetição");
+                        return false;
+                    }
+                }
+                else if (ConfiguracoesDerRpeticao.Semanalmente)
+                {
+                    if (!ConfiguracoesDerRpeticao.Dias.Any())
+                    {
+                        MensagemPopup.ShowMessage("Erro", "Selecione pelo menos um dia da semanda");
+                        return false;
+                    }
+
+                    if (dataFim < dataInicioTask.AddDays(7))
+                    {
+                        MensagemPopup.ShowMessage("Erro", "Data de termino para repetição deve conter pelo menos uma semana de repetição");
+                        return false;
+                    }
+                }
+                else if (ConfiguracoesDerRpeticao.Mensalmente)
+                {
+                    if (!ConfiguracoesDerRpeticao.Dias.Any())
+                    {
+                        MensagemPopup.ShowMessage("Erro", "Selecione pelo menos um mês");
+                        return false;
+                    }
+
+                    if (dataFim < dataInicioTask.AddYears(1))
+                    {
+                        MensagemPopup.ShowMessage("Erro", "Data de termino para repetição deve conter pelo menos um ano para repetição");
+                        return false;
+                    }
+                }
+                else
+                {
+                    MensagemPopup.ShowMessage("Erro", "Configure algum tipo de repetição");
+                    return false;
+                }
             }
+
             return true;
         }
 

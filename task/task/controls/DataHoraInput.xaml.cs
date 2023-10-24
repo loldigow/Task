@@ -12,6 +12,7 @@ namespace task.controls
         public static readonly BindableProperty HoraInicioProperty = BindableProperty.Create(nameof(HoraInicio), typeof(TimeSpan), typeof(DataHoraInput));
         public static readonly BindableProperty HoraFimProperty = BindableProperty.Create(nameof(HoraFim), typeof(TimeSpan), typeof(DataHoraInput));
         public static readonly BindableProperty DescricaoInputProperty = BindableProperty.Create(nameof(DescricaoInput), typeof(string), typeof(DataHoraInput));
+        public static readonly BindableProperty DesativaHoraInputProperty = BindableProperty.Create(nameof(DesativaHoraInput), typeof(bool), typeof(DataHoraInput));
         public DateTime Data
         {
             get { return (DateTime)GetValue(DataProperty); }
@@ -31,6 +32,12 @@ namespace task.controls
         {
             get { return (string)GetValue(DescricaoInputProperty); }
             set { SetValue(DescricaoInputProperty, value); }
+        }
+        
+        public bool DesativaHoraInput
+        {
+            get { return (bool)GetValue(DesativaHoraInputProperty); }
+            set { SetValue(DesativaHoraInputProperty, value); }
         }
 
         public DataHoraInput()
@@ -59,6 +66,10 @@ namespace task.controls
             if (propertyName == nameof(DescricaoInput))
             {
                 LabelDescricaoInput.Text = DescricaoInput;
+            }
+            if(propertyName == nameof(DesativaHoraInput))
+            {
+                PainelHora.IsVisible = !DesativaHoraInput;
             }
         }
 

@@ -2,6 +2,7 @@
 <pages:PopupPage  xmlns:pages="http://rotorgames.com"
                   xmlns="http://xamarin.com/schemas/2014/forms" 
                   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:controls="clr-namespace:task.controls"
+                  Padding="15"
                   x:Class="task.controls.MensagemPopup">
     <ContentView>
         <Frame VerticalOptions="Center" 
