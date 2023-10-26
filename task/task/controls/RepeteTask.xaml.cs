@@ -36,7 +36,7 @@ namespace task.controls
         [ObservableProperty]
         public DateTime dataFim;
         [ObservableProperty]
-        bool diariamente;
+        bool diariamente = true;
         [ObservableProperty]
         bool semanalmente;
         [ObservableProperty]

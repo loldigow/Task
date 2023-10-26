@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 using Core.Interfaces;
 using Core.Modelos;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using task.controls;
 using task.Core;
@@ -127,14 +128,65 @@ namespace task.ViewModel
 
         private void SalveLoteDeTasks()
         {
-           
+            List<Task> tasks = new List<Task>();
+            if (ConfiguracoesDerRpeticao.Diariamente)
+            {
+                var dataReferencia = DataTask.Date;
+                while (dataReferencia <= ConfiguracoesDerRpeticao.DataFim.Date)
+                {
+                    var task = MapeieModel(dataReferencia);
+                    tasks.Add(task);
+                    dataReferencia = dataReferencia.AddDays(1);
+                }
+            }
+            if (ConfiguracoesDerRpeticao.Semanalmente)
+            {
+                var dataReferencia = DataTask.Date;
+                while (dataReferencia <= ConfiguracoesDerRpeticao.DataFim.Date)
+                {
+                    if (ConfiguracoesDerRpeticao.Dias.Any(x => (int)x == (int)dataReferencia.DayOfWeek))
+                    {
+                        var task = MapeieModel(dataReferencia);
+                        tasks.Add(task);
+                    }
+                    dataReferencia = dataReferencia.AddDays(1);
+                }
+            }
+            if (ConfiguracoesDerRpeticao.Mensalmente)
+            {
+                var dataReferencia = DataTask.Date;
+                while (dataReferencia <= ConfiguracoesDerRpeticao.DataFim.Date)
+                {
+                    var task = MapeieModel(dataReferencia);
+                    tasks.Add(task);
+                    dataReferencia = dataReferencia.AddMonths(1);
+                }
+            }
+
+            var contador = 1;
+            foreach (var task in tasks)
+            {
+                task.NomeTask += $" {contador}/{tasks.Count()}";
+                contador++;
+            }
+
+            SalveVariasTasks(tasks);
         }
 
         private void SalveTaskUnica()
         {
             var model = MapeieModel();
-            _taskRepository.Salve(ref model);
+            _taskRepository.Salve(model);
             new Notificacao().AgendeNotificacao("Task", model.NomeTask, model.DataInicioTask);
+        }
+
+        private void SalveVariasTasks(List<Task> tasks)
+        {
+            _taskRepository.SalveVariasTasks(tasks);
+            foreach (var task in tasks)
+            {
+                new Notificacao().AgendeNotificacao("Task", task.NomeTask, task.DataInicioTask);
+            }
         }
 
         [RelayCommand]
@@ -187,13 +239,7 @@ namespace task.ViewModel
                 }
                 else if (ConfiguracoesDerRpeticao.Mensalmente)
                 {
-                    if (!ConfiguracoesDerRpeticao.Dias.Any())
-                    {
-                        MensagemPopup.ShowMessage("Erro", "Selecione pelo menos um mês");
-                        return false;
-                    }
-
-                    if (dataFim < dataInicioTask.AddYears(1))
+                    if (dataFim < dataInicioTask.AddMonths(1))
                     {
                         MensagemPopup.ShowMessage("Erro", "Data de termino para repetição deve conter pelo menos um ano para repetição");
                         return false;
@@ -209,15 +255,16 @@ namespace task.ViewModel
             return true;
         }
 
-        private Task MapeieModel()
+        private Task MapeieModel(DateTime? dataReferencia = null)
         {
+            var data = dataReferencia ?? DataTask;
             return new Task()
             {
                 Id = _id,
                 NomeTask = DescricaoTask,
                 Realizada = false,
-                DataInicioTask = DataTask.Date.AddHours(HoraInicio.Hours).AddMinutes(HoraInicio.Minutes),
-                DataFimTask = DataTask.Date.AddHours(HoraFim.Hours).AddMinutes(HoraFim.Minutes),
+                DataInicioTask = data.Date.AddHours(HoraInicio.Hours).AddMinutes(HoraInicio.Minutes),
+                DataFimTask = data.Date.AddHours(HoraFim.Hours).AddMinutes(HoraFim.Minutes),
                 ObservacaoTask = ObservacaoTask
             };
         }

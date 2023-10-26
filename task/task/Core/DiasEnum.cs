@@ -6,12 +6,12 @@ namespace task.Core
 {
     public enum DiasEnum
     {
+        DOMINGO,
         SEGUNDA,
         TERCA,
         QUARTA,
         QUINTA,
         SEXTA,
-        SABADO,
-        DOMINGO
+        SABADO
     }
 }

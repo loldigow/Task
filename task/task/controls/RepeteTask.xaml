@@ -13,30 +13,17 @@
                     <RadioButton Content="Semanalmente" IsChecked="{Binding Source={x:Reference RepeteTaskPage}, Path=ConfiguracoesDeRpeticao.Semanalmente}"/>
                     <StackLayout IsVisible="{Binding Source={x:Reference RepeteTaskPage}, Path=ConfiguracoesDeRpeticao.Semanalmente}" Margin="20,5">
                         
-                        <controls:CheckBoxControl Text="Segunda-feira" OnCheckedCommand="{Binding Source={x:Reference RepeteTaskPage}, Path=ConfiguracoesDeRpeticao.AdicioneDiaDaSemanaCommand}" OnCheckedCommandParameter="0"/>
-                        <controls:CheckBoxControl Text="Terça-feira" OnCheckedCommand="{Binding Source={x:Reference RepeteTaskPage}, Path=ConfiguracoesDeRpeticao.AdicioneDiaDaSemanaCommand}" OnCheckedCommandParameter="1"/>
-                        <controls:CheckBoxControl Text="Quarta-feira" OnCheckedCommand="{Binding Source={x:Reference RepeteTaskPage}, Path=ConfiguracoesDeRpeticao.AdicioneDiaDaSemanaCommand}" OnCheckedCommandParameter="2"/>
-                        <controls:CheckBoxControl Text="Quita-feira" OnCheckedCommand="{Binding Source={x:Reference RepeteTaskPage}, Path=ConfiguracoesDeRpeticao.AdicioneDiaDaSemanaCommand}" OnCheckedCommandParameter="3"/>
-                        <controls:CheckBoxControl Text="Sexta-feira" OnCheckedCommand="{Binding Source={x:Reference RepeteTaskPage}, Path=ConfiguracoesDeRpeticao.AdicioneDiaDaSemanaCommand}" OnCheckedCommandParameter="4"/>
-                        <controls:CheckBoxControl Text="Sabado" OnCheckedCommand="{Binding Source={x:Reference RepeteTaskPage}, Path=ConfiguracoesDeRpeticao.AdicioneDiaDaSemanaCommand}" OnCheckedCommandParameter="5"/>
-                        <controls:CheckBoxControl Text="Domingo" OnCheckedCommand="{Binding Source={x:Reference RepeteTaskPage},  Path=ConfiguracoesDeRpeticao.AdicioneDiaDaSemanaCommand}" OnCheckedCommandParameter="6"/>
+                        <controls:CheckBoxControl Text="Segunda-feira" OnCheckedCommand="{Binding Source={x:Reference RepeteTaskPage}, Path=ConfiguracoesDeRpeticao.AdicioneDiaDaSemanaCommand}" OnCheckedCommandParameter="1"/>
+                        <controls:CheckBoxControl Text="Terça-feira" OnCheckedCommand="{Binding Source={x:Reference RepeteTaskPage}, Path=ConfiguracoesDeRpeticao.AdicioneDiaDaSemanaCommand}" OnCheckedCommandParameter="2"/>
+                        <controls:CheckBoxControl Text="Quarta-feira" OnCheckedCommand="{Binding Source={x:Reference RepeteTaskPage}, Path=ConfiguracoesDeRpeticao.AdicioneDiaDaSemanaCommand}" OnCheckedCommandParameter="3"/>
+                        <controls:CheckBoxControl Text="Quita-feira" OnCheckedCommand="{Binding Source={x:Reference RepeteTaskPage}, Path=ConfiguracoesDeRpeticao.AdicioneDiaDaSemanaCommand}" OnCheckedCommandParameter="4"/>
+                        <controls:CheckBoxControl Text="Sexta-feira" OnCheckedCommand="{Binding Source={x:Reference RepeteTaskPage}, Path=ConfiguracoesDeRpeticao.AdicioneDiaDaSemanaCommand}" OnCheckedCommandParameter="5"/>
+                        <controls:CheckBoxControl Text="Sabado" OnCheckedCommand="{Binding Source={x:Reference RepeteTaskPage}, Path=ConfiguracoesDeRpeticao.AdicioneDiaDaSemanaCommand}" OnCheckedCommandParameter="6"/>
+                        <controls:CheckBoxControl Text="Domingo" OnCheckedCommand="{Binding Source={x:Reference RepeteTaskPage},  Path=ConfiguracoesDeRpeticao.AdicioneDiaDaSemanaCommand}" OnCheckedCommandParameter="0"/>
                         
                     </StackLayout>
                     <RadioButton Content="Mensalmente" IsChecked="{Binding Source={x:Reference RepeteTaskPage}, Path=ConfiguracoesDeRpeticao.Mensalmente}"/>
-                    <StackLayout IsVisible="{Binding Source={x:Reference RepeteTaskPage}, Path=ConfiguracoesDeRpeticao.Mensalmente}" Margin="20,5">
-                        <controls:CheckBoxControl Text="Janeiro" OnCheckedCommand="{Binding Source={x:Reference RepeteTaskPage}, Path=ConfiguracoesDeRpeticao.AdicioneMesCommand}" OnCheckedCommandParameter="0"/>
-                        <controls:CheckBoxControl Text="Fevereiro" OnCheckedCommand="{Binding Source={x:Reference RepeteTaskPage}, Path=ConfiguracoesDeRpeticao.AdicioneMesCommand}" OnCheckedCommandParameter="2"/>
-                        <controls:CheckBoxControl Text="Março" OnCheckedCommand="{Binding Source={x:Reference RepeteTaskPage}, Path=ConfiguracoesDeRpeticao.AdicioneMesCommand}" OnCheckedCommandParameter="3"/>
-                        <controls:CheckBoxControl Text="Abril" OnCheckedCommand="{Binding Source={x:Reference RepeteTaskPage}, Path=ConfiguracoesDeRpeticao.AdicioneMesCommand}" OnCheckedCommandParameter="4"/>
-                        <controls:CheckBoxControl Text="Maio" OnCheckedCommand="{Binding Source={x:Reference RepeteTaskPage}, Path=ConfiguracoesDeRpeticao.AdicioneMesCommand}" OnCheckedCommandParameter="5"/>
-                        <controls:CheckBoxControl Text="Junho" OnCheckedCommand="{Binding Source={x:Reference RepeteTaskPage}, Path=ConfiguracoesDeRpeticao.AdicioneMesCommand}" OnCheckedCommandParameter="5"/>
-                        <controls:CheckBoxControl Text="Julho" OnCheckedCommand="{Binding Source={x:Reference RepeteTaskPage}, Path=ConfiguracoesDeRpeticao.AdicioneMesCommand}" OnCheckedCommandParameter="6"/>
-                        <controls:CheckBoxControl Text="Agosto" OnCheckedCommand="{Binding Source={x:Reference RepeteTaskPage}, Path=ConfiguracoesDeRpeticao.AdicioneMesCommand}" OnCheckedCommandParameter="7"/>
-                        <controls:CheckBoxControl Text="Setembro" OnCheckedCommand="{Binding Source={x:Reference RepeteTaskPage}, Path=ConfiguracoesDeRpeticao.AdicioneMesCommand}" OnCheckedCommandParameter="8"/>
-                        <controls:CheckBoxControl Text="outubro" OnCheckedCommand="{Binding Source={x:Reference RepeteTaskPage}, Path=ConfiguracoesDeRpeticao.AdicioneMesCommand}" OnCheckedCommandParameter="9"/>
-                        <controls:CheckBoxControl Text="Novembro" OnCheckedCommand="{Binding Source={x:Reference RepeteTaskPage}, Path=ConfiguracoesDeRpeticao.AdicioneMesCommand}" OnCheckedCommandParameter="10"/>
-                        <controls:CheckBoxControl Text="Dezembro" OnCheckedCommand="{Binding Source={x:Reference RepeteTaskPage}, Path=ConfiguracoesDeRpeticao.AdicioneMesCommand}" OnCheckedCommandParameter="11"/>
-                    </StackLayout>
+                    
                 </StackLayout>
                 <StackLayout Margin="5">
                     <controls:DataHoraInput DescricaoInput="Data término repetição" 

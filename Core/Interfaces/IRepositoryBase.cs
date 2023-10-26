@@ -11,6 +11,6 @@ namespace Core.Interfaces
         IEnumerable<TEntity> GetAll();
         void Update(TEntity id);
         void Delete(Guid id);
-        void Salve(ref TEntity entity);        
+        void Salve(TEntity entity);        
     }
 }
