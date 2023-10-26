@@ -31,7 +31,7 @@ namespace task.ViewModel
         TimeSpan horaFim;
 
         [ObservableProperty]
-        ConfiguracoesDeRpeticao configuracoesDerRpeticao;
+        ConfiguracoesDeRpeticaoModel configuracoesDerRpeticao;
 
         [ObservableProperty]
         string descricaoTask;
