@@ -1,21 +1,23 @@
 ﻿using Core.Interfaces;
 using Core.Modelos;
-using DB.ImplementacaoRepository;
+using DBSqlLite.Mapper;
 using DBSqlLite.SqlLiteModels;
 using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
 
-namespace DBSqlLite.DB.ImplementacaoRepository
+namespace DB.Repository
 {
     public class UsuarioSqliteRepository : RepositoryBase<UsuarioSQLiteModel>, IUsuarioRepository
     {
         public Usuario GetUsuario()
         {
-            return new Usuario()
+            var usuario = base.GetAll().FirstOrDefault();
+            if (usuario != null)
             {
-                IniciandoNoAplicativo = false
-            };
+                Mapper.GetMapper().Map<Usuario>(usuario);
+            }
+            return null;
         }
 
         public void Salve(Usuario entity)

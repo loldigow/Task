@@ -23,6 +23,9 @@ public static class Mapper
             cfg.CreateMap<TaskRealmModel, Task>()
             .ForMember(dest => dest.DataInicioTask, act => act.MapFrom(src => DateTime.Parse(src.DataInicioTask).AddTicks(TimeSpan.Parse(src.HoraInicioTask).Ticks)))
             .ForMember(dest => dest.DataFimTask, act => act.MapFrom(src => DateTime.Parse(src.DataFimTask).AddTicks(TimeSpan.Parse(src.HoraFimTask).Ticks)));
+
+            cfg.CreateMap<UsuarioRealmModel, Usuario>();
+            cfg.CreateMap<Usuario, UsuarioRealmModel>();
         });
 
         _mapper = mapperConfiguration.CreateMapper();

@@ -33,3 +33,4 @@
 /Migration/bin/Debug/net6.0
 /Migration/obj/Debug/net6.0
 /Migration/obj
+/DBSqlLite/obj/DBSqlLite.csproj.nuget.g.props
