@@ -30,3 +30,7 @@
 /DBSqlLite/obj/Debug/netstandard2.0/DBSqlLite.csproj.FileListAbsolute.txt
 /DBSqlLite/obj/Debug/netstandard2.0/DBSqlLite.dll
 /DBSqlLite/obj/Debug/netstandard2.0/DBSqlLite.pdb
+/Migration/bin/Debug/net6.0
+/Migration/obj/Debug/net6.0
+/Migration/obj
+/DBSqlLite/obj/DBSqlLite.csproj.nuget.g.props

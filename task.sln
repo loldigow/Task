@@ -15,6 +15,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DBRealm", "DBRealm\DBRealm.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DBSqlLite", "DBSqlLite\DBSqlLite.csproj", "{44C28E94-EECE-4423-A0F0-7C96375B083C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Migration", "Migration\Migration.csproj", "{37E03EEA-4922-4BCD-B5E8-CD55092018A4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -115,6 +117,18 @@ Global
 		{44C28E94-EECE-4423-A0F0-7C96375B083C}.Release|iPhone.Build.0 = Release|Any CPU
 		{44C28E94-EECE-4423-A0F0-7C96375B083C}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{44C28E94-EECE-4423-A0F0-7C96375B083C}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{37E03EEA-4922-4BCD-B5E8-CD55092018A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37E03EEA-4922-4BCD-B5E8-CD55092018A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37E03EEA-4922-4BCD-B5E8-CD55092018A4}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{37E03EEA-4922-4BCD-B5E8-CD55092018A4}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{37E03EEA-4922-4BCD-B5E8-CD55092018A4}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{37E03EEA-4922-4BCD-B5E8-CD55092018A4}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{37E03EEA-4922-4BCD-B5E8-CD55092018A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37E03EEA-4922-4BCD-B5E8-CD55092018A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37E03EEA-4922-4BCD-B5E8-CD55092018A4}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{37E03EEA-4922-4BCD-B5E8-CD55092018A4}.Release|iPhone.Build.0 = Release|Any CPU
+		{37E03EEA-4922-4BCD-B5E8-CD55092018A4}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{37E03EEA-4922-4BCD-B5E8-CD55092018A4}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

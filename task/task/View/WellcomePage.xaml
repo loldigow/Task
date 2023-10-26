@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:controls="clr-namespace:task.controls" xmlns:viewmodel="clr-namespace:task.ViewModel"
+             BackgroundColor="{AppThemeBinding Light=#DFECF6, Dark=#225177}"
+             Padding="25"
+             x:Class="task.View.WellcomePage">
+    <ContentPage.BindingContext>
+        <viewmodel:WellcomeViewModel></viewmodel:WellcomeViewModel>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout Spacing="25">
+            <StackLayout VerticalOptions="CenterAndExpand">
+                <Image Source="{AppThemeBinding Dark='iconTaskLight.png', Light='iconTask.png'}"
+                   VerticalOptions="Center"
+                   WidthRequest="150"
+                   HeightRequest="150"
+                   Margin="25"
+                   HorizontalOptions="Center"></Image>
+                <Label Text="Bem Vindo ao APP!!" 
+                   Margin="10"
+                   FontSize="Large" 
+                   HorizontalOptions="Center"></Label>
+                <Label Text="Aqui você consegue controle total de suas atividades diárias" 
+                   FontSize="Medium" 
+                   Margin="10"
+                   HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                <controls:Input Descricao="Nome" Texto="{Binding Nome, Mode=TwoWay}"></controls:Input>
+            </StackLayout>
+            <StackLayout VerticalOptions="End">
+                <Button Text="Começar"
+                        TextColor="White" 
+                        CornerRadius="15" 
+                        FontSize="15"
+                        FontAttributes="Bold"
+                        HeightRequest="65" 
+                        Command="{Binding InicieAppCommand}"
+                        BackgroundColor="#122B40" 
+                        Margin="5">
+                </Button>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
