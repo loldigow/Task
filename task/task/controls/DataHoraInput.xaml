@@ -5,28 +5,49 @@
              x:Class="task.controls.DataHoraInput">
     <ContentView.Content>
         <Frame BackgroundColor="{AppThemeBinding Light=White, Dark=#1c4563}" 
-               Padding="0" 
+               Padding="10" 
                CornerRadius="10"
                HasShadow="False">
-            <StackLayout  Margin="10">
-                <Label Text="{Binding DescricaoInput}" x:Name="LabelDescricaoInput" Margin="0"></Label>
-                <StackLayout Orientation="Horizontal">
-                    <DatePicker IsVisible="false" x:Name="DataPicker" DateSelected="DataPicker_DateSelected"></DatePicker>
-                    <Label x:Name="LabelData"
-                       FontSize="20"
-                       HorizontalOptions="StartAndExpand">
-                        <Label.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="DataAcionada"></TapGestureRecognizer>
-                        </Label.GestureRecognizers>
-                    </Label>
-                    <TimePicker IsVisible="false" x:Name="HoraPicker" PropertyChanged="HoraPicker_PropertyChanged"></TimePicker>
-                    <Label x:Name="LabelHora"
-                       FontSize="20"
-                       HorizontalOptions="End">
-                        <Label.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="HoraEspecifica"></TapGestureRecognizer>
-                        </Label.GestureRecognizers>
-                    </Label>
+
+            <StackLayout Orientation="Horizontal">
+                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+
+                    <Label Text="{Binding DescricaoInput}" x:Name="LabelDescricaoInput" Margin="0"></Label>
+                        <DatePicker IsVisible="false" x:Name="DataPicker" DateSelected="DataPicker_DateSelected"></DatePicker>
+                        <Label x:Name="LabelData"
+                       FontSize="25"
+                       HorizontalOptions="StartAndExpand"
+                           VerticalOptions="Center">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="DataAcionada"></TapGestureRecognizer>
+                            </Label.GestureRecognizers>
+                        </Label>
+                                
+                </StackLayout>
+
+
+                <StackLayout Spacing="0" x:Name="PainelHora">
+
+                        <TimePicker IsVisible="false" x:Name="HoraInicioPicker" PropertyChanged="HoraPicker_PropertyChanged"></TimePicker>
+                        <Label Text="Hora inicio:" FontSize="10"></Label>
+                        <Label x:Name="LabelHoraInicio"
+                           FontSize="20"
+                           HorizontalOptions="End">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="HoraInicioEspecifica"></TapGestureRecognizer>
+                            </Label.GestureRecognizers>
+                        </Label>
+
+                        <Label Text="Hora fim:" FontSize="10"></Label>
+                        <TimePicker IsVisible="false" x:Name="HoraFimPicker" PropertyChanged="HoraFimPicker_PropertyChanged"></TimePicker>
+                        <Label x:Name="LabelHoraFim"
+                               FontSize="20"
+                               HorizontalOptions="End">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="HoraFimEspecifica"></TapGestureRecognizer>
+                            </Label.GestureRecognizers>
+                        </Label>
+
                 </StackLayout>
             </StackLayout>
         </Frame>

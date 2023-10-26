@@ -21,7 +21,7 @@ namespace DBRealm.ImplementacaoRepository
             return Mapper.GetMapper().Map<List<Task>>(dados);
         }
 
-        virtual public void Salve(ref Task taskModel)
+        virtual public void Salve(Task taskModel)
         {
             if(taskModel.Id ==  Guid.Empty)
             {
@@ -41,7 +41,7 @@ namespace DBRealm.ImplementacaoRepository
             if (task != null)
             {
                 task.Realizada = true;
-                Salve(ref task);
+                Salve(task);
             }
         }
         public void Delete(Guid guid)
@@ -68,7 +68,17 @@ namespace DBRealm.ImplementacaoRepository
         public void Update(Task target)
         {
             Delete(target.Id);
-            Salve(ref target);
+            Salve(target);
+        }
+
+        public void SalveVariasTasks(List<Task> tasks)
+        {
+            var guidEscopoInsert = Guid.NewGuid();
+            foreach (var task in tasks)
+            {
+                task.InsertID = guidEscopoInsert;
+                Salve(task);
+            }
         }
     }
 }

@@ -12,6 +12,7 @@ namespace Core.Modelos
         public string ObservacaoTask { get; set; }
         public DateTime DataInicioTask { get; set; }
         public DateTime DataFimTask { get; set; }
+        public Guid InsertID { get; set; }
 
     }
 }

@@ -8,5 +8,6 @@ namespace Core.Interfaces
     {
         IEnumerable<Task> GetAllOnDay(DateTime data);
         void ConcluaTarefa(Guid id);
+        void SalveVariasTasks(List<Task> tasks);
     }
 }

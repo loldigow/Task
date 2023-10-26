@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using System.Runtime.CompilerServices;
+using System.Windows.Input;
 using Xamarin.Forms;
-using Xamarin.Forms.Svg;
 using Xamarin.Forms.Xaml;
 
 namespace task.controls
@@ -13,20 +8,49 @@ namespace task.controls
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CheckBoxControl : ContentView
     {
-        bool _check;
+        public static readonly BindableProperty TextProperty = BindableProperty.Create(nameof(Text), typeof(string), typeof(CheckBoxControl), defaultBindingMode: BindingMode.TwoWay);
+        public static readonly BindableProperty IsCheckedProperty = BindableProperty.Create(nameof(IsChecked), typeof(bool), typeof(CheckBoxControl), defaultBindingMode: BindingMode.TwoWay);
+        public static readonly BindableProperty OnCheckedCommandProperty = BindableProperty.Create(nameof(OnCheckedCommand), typeof(ICommand), typeof(CheckBoxControl), defaultBindingMode: BindingMode.TwoWay);
+        public static readonly BindableProperty OnCheckedCommandParameterProperty = BindableProperty.Create(nameof(OnCheckedCommandParameter), typeof(object), typeof(CheckBoxControl), defaultBindingMode: BindingMode.TwoWay);
+
+        public string Text
+        {
+            get { return (string)GetValue(TextProperty); }
+            set { SetValue(TextProperty, value); }  
+        }
+        public bool IsChecked
+        {
+            get { return (bool)GetValue(IsCheckedProperty); }
+            set { SetValue(IsCheckedProperty, value); }
+        }
+        
+        public ICommand OnCheckedCommand
+        {
+            get { return (ICommand)GetValue(OnCheckedCommandProperty); }
+            set { SetValue(OnCheckedCommandProperty, value); }
+        }
+
+        public object OnCheckedCommandParameter
+        {
+            get { return (object)GetValue(OnCheckedCommandParameterProperty); }
+            set { SetValue(OnCheckedCommandParameterProperty, value); }
+        }
+
         public CheckBoxControl()
         {
             InitializeComponent();
-            _check = false;
-            var imageSource = SvgImageSource.FromSvgResource("Resource/Images/uncheck.svg", 50d,50d ,Color.Black);
-            image.Source = imageSource;
         }
 
-        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        protected override void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            var source = _check ? "Resource/Images/check.svg" : "Resource/Images/uncheck.svg";
-            var imageSource = SvgImageSource.FromSvgResource(source, 50d, 50d, Color.Black);
-            image.Source = imageSource;
+            base.OnPropertyChanged(propertyName);
+        }
+
+        private void CheckBox_CheckedChanged(object sender, CheckedChangedEventArgs e)
+        {
+            if(OnCheckedCommand?.CanExecute(OnCheckedCommandParameter) ?? false) {
+                OnCheckedCommand.Execute(OnCheckedCommandParameter);
+            }
         }
     }
 }

@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:controls="clr-namespace:task.controls"
+             x:Name="RepeteTaskPage"
+             x:Class="task.controls.RepeteTask">
+    <ContentView.Content>
+        <StackLayout>
+            <controls:CheckBoxControl Text="Repetir atividade" 
+                                      IsChecked="{Binding Source={x:Reference RepeteTaskPage}, Path=ConfiguracoesDeRpeticao.Repete}" ></controls:CheckBoxControl>
+            <StackLayout IsVisible="{Binding Source={x:Reference RepeteTaskPage}, Path=ConfiguracoesDeRpeticao.Repete}">
+                <StackLayout>
+                    <RadioButton Content="Diariamente" IsChecked="{Binding Source={x:Reference RepeteTaskPage}, Path=ConfiguracoesDeRpeticao.Diariamente}"/>
+                    <RadioButton Content="Semanalmente" IsChecked="{Binding Source={x:Reference RepeteTaskPage}, Path=ConfiguracoesDeRpeticao.Semanalmente}"/>
+                    <StackLayout IsVisible="{Binding Source={x:Reference RepeteTaskPage}, Path=ConfiguracoesDeRpeticao.Semanalmente}" Margin="20,5">
+                        
+                        <controls:CheckBoxControl Text="Segunda-feira" OnCheckedCommand="{Binding Source={x:Reference RepeteTaskPage}, Path=ConfiguracoesDeRpeticao.AdicioneDiaDaSemanaCommand}" OnCheckedCommandParameter="1"/>
+                        <controls:CheckBoxControl Text="Terça-feira" OnCheckedCommand="{Binding Source={x:Reference RepeteTaskPage}, Path=ConfiguracoesDeRpeticao.AdicioneDiaDaSemanaCommand}" OnCheckedCommandParameter="2"/>
+                        <controls:CheckBoxControl Text="Quarta-feira" OnCheckedCommand="{Binding Source={x:Reference RepeteTaskPage}, Path=ConfiguracoesDeRpeticao.AdicioneDiaDaSemanaCommand}" OnCheckedCommandParameter="3"/>
+                        <controls:CheckBoxControl Text="Quita-feira" OnCheckedCommand="{Binding Source={x:Reference RepeteTaskPage}, Path=ConfiguracoesDeRpeticao.AdicioneDiaDaSemanaCommand}" OnCheckedCommandParameter="4"/>
+                        <controls:CheckBoxControl Text="Sexta-feira" OnCheckedCommand="{Binding Source={x:Reference RepeteTaskPage}, Path=ConfiguracoesDeRpeticao.AdicioneDiaDaSemanaCommand}" OnCheckedCommandParameter="5"/>
+                        <controls:CheckBoxControl Text="Sabado" OnCheckedCommand="{Binding Source={x:Reference RepeteTaskPage}, Path=ConfiguracoesDeRpeticao.AdicioneDiaDaSemanaCommand}" OnCheckedCommandParameter="6"/>
+                        <controls:CheckBoxControl Text="Domingo" OnCheckedCommand="{Binding Source={x:Reference RepeteTaskPage},  Path=ConfiguracoesDeRpeticao.AdicioneDiaDaSemanaCommand}" OnCheckedCommandParameter="0"/>
+                        
+                    </StackLayout>
+                    <RadioButton Content="Mensalmente" IsChecked="{Binding Source={x:Reference RepeteTaskPage}, Path=ConfiguracoesDeRpeticao.Mensalmente}"/>
+                    
+                </StackLayout>
+                <StackLayout Margin="5">
+                    <controls:DataHoraInput DescricaoInput="Data término repetição" 
+                                            Data="{Binding Source={x:Reference RepeteTaskPage}, Path=ConfiguracoesDeRpeticao.DataFim, Mode=TwoWay}"
+                                            DesativaHoraInput="True"/>
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

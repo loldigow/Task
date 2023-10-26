@@ -30,10 +30,11 @@ namespace DBRealm.ImplementacaoRepository
 
         }
 
-        public void Salve(ref Usuario entity)
+        public void Salve(Usuario entity)
         {
             throw new NotImplementedException();
         }
+
 
         public void Update(Usuario id)
         {

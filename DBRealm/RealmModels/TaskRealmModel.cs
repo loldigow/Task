@@ -9,6 +9,7 @@ namespace DBRealm.RealmModels
     {
         [PrimaryKey]
         public string Id { get ; set; }
+        public string InsertID {  get; set; }
         public bool Realizada { get; set; }
         public string NomeTask { get; set; }
         public string ObservacaoTask { get; set; }

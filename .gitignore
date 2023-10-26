@@ -18,3 +18,7 @@
 /task/task.iOS/obj
 /DBSqlLite/DB/bin/Debug/net6.0
 /DBSqlLite/DB/obj
+/DBSqlLite/obj/Debug/netstandard2.0/DBSqlLite.csproj.AssemblyReference.cache
+/DBSqlLite/obj/DBSqlLite.csproj.nuget.dgspec.json
+/DBSqlLite/obj/project.assets.json
+/DBSqlLite/obj/project.nuget.cache

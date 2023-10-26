@@ -1,15 +1,12 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:svg="clr-namespace:Xamarin.Forms.Svg;assembly=SvgImageSource"
+             x:Name="CheckBoxControlContent"
              x:Class="task.controls.CheckBoxControl">
   <ContentView.Content>
-      <StackLayout>
-            <Image x:Name="image" BackgroundColor="red" WidthRequest="25" HeightRequest="25">
-                <Image.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"></TapGestureRecognizer>
-                </Image.GestureRecognizers>
-            </Image>
+      <StackLayout Orientation="Horizontal">
+            <CheckBox IsChecked="{Binding Source={x:Reference CheckBoxControlContent}, Path=IsChecked}" CheckedChanged="CheckBox_CheckedChanged"></CheckBox>
+            <Label x:Name="LabelTexto" Text="{Binding Source={x:Reference CheckBoxControlContent}, Path=Text}"></Label>
       </StackLayout>
   </ContentView.Content>
 </ContentView>
