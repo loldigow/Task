@@ -26,8 +26,9 @@
                                 Padding="20,5,20,5"></controls:Input>
                     <Frame Margin="20,5,20,0" 
                        CornerRadius="15"
+                           IsVisible="{Binding NaoEhNovoRegistro}"
                        >
-                        <StackLayout>
+                        <StackLayout >
                             <controls:RepeteTask  ConfiguracoesDeRpeticao="{Binding ConfiguracoesDerRpeticao}"></controls:RepeteTask>
                         </StackLayout>
                     </Frame>
