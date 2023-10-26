@@ -71,5 +71,8 @@
 		<EmbeddedResource Update="View\TaskPage.xaml">
 			<Generator>MSBuild:UpdateDesignTimeXaml</Generator>
 		</EmbeddedResource>
+		<EmbeddedResource Update="View\WellcomePage.xaml">
+		  <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+		</EmbeddedResource>
 	</ItemGroup>
 </Project>

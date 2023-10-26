@@ -7,13 +7,21 @@ namespace task
 {
     public partial class App : Application
     {
+        IBancoDados _repoBanco = Xamarin.Forms.DependencyService.Resolve<IBancoDados>();
+        IUsuarioRepository _repoUsuarioRepository = Xamarin.Forms.DependencyService.Resolve<IUsuarioRepository>();
         public App()
         {
             Core.DependencyService.Registre();
-            Xamarin.Forms.DependencyService.Resolve<IBancoDados>().Init();
             InitializeComponent();
-
-            MainPage = new NavigationPage(new TaskPage());
+            var usuario = _repoUsuarioRepository.GetUsuario();
+            if (usuario != null)
+            {
+                MainPage = new NavigationPage(new WellcomePage());
+            }
+            else
+            {
+                MainPage = new NavigationPage(new TaskPage());
+            }
         }
 
         protected override void OnStart()
