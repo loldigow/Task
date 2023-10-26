@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 using Core.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using task.controls;
@@ -55,7 +56,8 @@ namespace task.ViewModel
                                            .OrderBy(x => x.DataInicioTask)
                                            .ToList();
 
-                DiaDaSemana = Data.ToString("dddd");
+                var idioma = CultureInfo.CurrentCulture;
+                DiaDaSemana = Data.ToString("dddd", idioma);
                 QuantidadeDeTasks = $"{lista.Count()} tasks";
 
                 var listaConvertida = lista.Select(x => new TaskModel()
@@ -71,7 +73,7 @@ namespace task.ViewModel
 
                 ListaTasksDoDia = listaConvertida;
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 MensagemPopup.ShowMessage("Erro", e.Message);
             }
@@ -122,7 +124,14 @@ namespace task.ViewModel
         {
             if (obj is TaskModel model)
             {
-                _taskrepository.ConcluaTarefa(model.Id);
+                try
+                {
+                    _taskrepository.ConcluaTarefa(model.Id);
+                }
+                catch (Exception e)
+                {
+                    MensagemPopup.ShowMessage("Erro", e.Message);
+                }
             }
         }
 

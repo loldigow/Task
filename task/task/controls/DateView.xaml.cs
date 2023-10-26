@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -36,8 +37,9 @@ namespace task.controls
             base.OnPropertyChanged(propertyName);
             if(propertyName == nameof(Data))
             {
+                var idioma = CultureInfo.CurrentCulture; 
                 LabelDia.Text = Data.ToString("dd");
-                LabelMes.Text = Data.ToString("Y").Substring(0,3);
+                LabelMes.Text = Data.ToString("Y", idioma).Substring(0,3);
                 if(OnDataChanged?.CanExecute(Data) ?? false)
                 {
                     OnDataChanged.Execute(Data);

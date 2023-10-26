@@ -45,6 +45,8 @@ namespace task.ViewModel
         [ObservableProperty]
         bool finalizado;
 
+        [ObservableProperty]
+        bool naoEhNovoRegistro;
 
 
 
@@ -82,6 +84,7 @@ namespace task.ViewModel
             ObservacaoTask = task.ObservacaoTask;
             DescricaoBotao = task.Realizada ? FuncaoTaskEnum.Fechar : FuncaoTaskEnum.Concluir;
             Finalizado = task.Realizada;
+            NaoEhNovoRegistro = false;
         }
 
         private void CrieNovaTask(DateTime? data = null)
@@ -95,6 +98,7 @@ namespace task.ViewModel
             DescricaoBotao = FuncaoTaskEnum.Salvar;
             ConfiguracoesDerRpeticao = new();
             _id = Guid.Empty;
+            NaoEhNovoRegistro = true;
         }
 
         [RelayCommand]

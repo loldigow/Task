@@ -17,6 +17,8 @@ namespace task.Droid
             base.OnCreate(savedInstanceState);
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
+            SQLitePCL.Batteries.Init();
+            SQLitePCL.raw.FreezeProvider();
             Xamarin.Forms.Svg.Droid.SvgImage.Init(this);
             Rg.Plugins.Popup.Popup.Init(this);
             Forms.Init(this, savedInstanceState);

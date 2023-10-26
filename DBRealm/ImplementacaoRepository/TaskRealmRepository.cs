@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace DBRealm.ImplementacaoRepository
 {
-    public class TaskRepository : BaseRepository, ITaskRepository
+    public class TaskRealmRepository : BaseRepository, ITaskRepository
     {
         public Task Get(Guid id)
         {

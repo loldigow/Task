@@ -1,47 +1,48 @@
 ﻿using Core.Interfaces;
 using DB.Repository;
-using System.Data.Common;
+using DBSqlLite.SqlLiteModels;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace DB.ImplementacaoRepository
 {
-    public class RepositoryBase<TEntity> : IRepositoryBase<TEntity> where TEntity : class
+    public class RepositoryBase<TEntity> : IRepositoryBase<TEntity> where TEntity : SqlModelbase
     {
-        private BancoContexto<TEntity> _banco { get; set; }
-        private DbConnection _conexao { get; set; }
-
+        protected new Context<TEntity> Tabela { get; set; }
 
         public RepositoryBase()
         {
-            throw new NotImplementedException();
-            //_banco = new BancoContexto<TEntity>();
-            //_conexao = _banco.Database.GetDbConnection();
-        }
-
-        public TEntity Get(Guid id)
-        {
-            throw new NotImplementedException();
-            // _banco.Database.SqlQuery<TEntity>(FormattableStringFactory.Create("")).First();
-        }
-
-        public IEnumerable<TEntity> GetAll()
-        {
-            throw new NotImplementedException();
-            //_banco.Database.SqlQuery<TEntity>(FormattableStringFactory.Create("")).ToList();
-        }
-
-        public void Update(TEntity id)
-        {
-            throw new NotImplementedException();
+            Tabela = new Context<TEntity>();
         }
 
         public void Delete(Guid id)
         {
-            throw new NotImplementedException();
+            var entidade = Get(id);
+            Tabela.Remove(entidade);
+            Tabela.SaveChanges();
+        }
+
+        public TEntity Get(Guid id)
+        {
+           return Tabela.Contexto.Find(id);
+        }
+
+        public IEnumerable<TEntity> GetAll()
+        {
+            return Tabela.Contexto.ToList();
         }
 
         public void Salve(TEntity entity)
         {
-            throw new NotImplementedException();
+            Tabela.Contexto.Add(entity);
+            Tabela.SaveChanges();
+        }
+
+        public void Update(TEntity entidade)
+        {
+            Tabela.Contexto.Update(entidade);
+            Tabela.SaveChanges();
         }
     }
 }
