@@ -1,6 +1,5 @@
 ﻿using Core.Interfaces;
 using Core.Modelos;
-using DB.ImplementacaoRepository;
 using DBSqlLite.Mapper;
 using DBSqlLite.SqlLiteModels;
 using System;
@@ -23,7 +22,7 @@ namespace DB.Repository
 
         public IEnumerable<Task> GetAllOnDay(DateTime data)
         {
-            var listaDeAtividades = Tabela.Contexto.Where(a => a.DataInicioTask.Date == data.Date)
+            var listaDeAtividades = Contexto.Where(a => a.DataInicioTask.Date == data.Date)
                                   .ToList();
             return Mapper.GetMapper().Map<IEnumerable<Task>>(listaDeAtividades);
         }

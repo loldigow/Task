@@ -1,11 +1,13 @@
-﻿using System;
+﻿using Realms;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Core.Modelos
+namespace DBRealm.RealmModels
 {
-    public class Usuario
+    public class UsuarioRealmModel : RealmObject
     {
+        public string Id { get; set; }
         public string Nome {  get; set; }
         public bool IniciandoNoAplicativo { get; set; }
     }

@@ -7,16 +7,19 @@ namespace task
 {
     public partial class App : Application
     {
-        IBancoDados _repoBanco = Xamarin.Forms.DependencyService.Resolve<IBancoDados>();
-        IUsuarioRepository _repoUsuarioRepository = Xamarin.Forms.DependencyService.Resolve<IUsuarioRepository>();
+        IBancoDados _repoBanco;
+        IUsuarioRepository _repoUsuarioRepository;
         public App()
         {
             Core.DependencyService.Registre();
             InitializeComponent();
+            _repoBanco = Xamarin.Forms.DependencyService.Resolve<IBancoDados>();
+            _repoUsuarioRepository = Xamarin.Forms.DependencyService.Resolve<IUsuarioRepository>();
+            _repoBanco.Init();
             var usuario = _repoUsuarioRepository.GetUsuario();
-            if (usuario != null)
+            if (usuario == null)
             {
-                MainPage = new NavigationPage(new WellcomePage());
+                MainPage = new WellcomePage();
             }
             else
             {

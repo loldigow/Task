@@ -1,7 +1,6 @@
 ﻿using Core.Interfaces;
 using Core.Modelos;
 using DBRealm.RealmModels;
-using Realms;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +11,8 @@ namespace DBRealm.ImplementacaoRepository
     {
         public Task Get(Guid id)
         {
-            var selectedStudent = _realm.All<TaskRealmModel>().First(b => b.Id == id.ToString());
+            var guidId = id.ToString();
+            var selectedStudent = _realm.All<TaskRealmModel>().First(b => b.Id == guidId);
             return Mapper.GetMapper().Map<Task>(selectedStudent);
         }
         public IEnumerable<Task> GetAll()
@@ -21,7 +21,7 @@ namespace DBRealm.ImplementacaoRepository
             return Mapper.GetMapper().Map<List<Task>>(dados);
         }
 
-        virtual public void Salve(Task taskModel)
+        public void Salve(Task taskModel)
         {
             if(taskModel.Id ==  Guid.Empty)
             {

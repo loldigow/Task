@@ -1,48 +1,50 @@
 ﻿using Core.Interfaces;
-using DB.Repository;
+using DBSqlLite;
 using DBSqlLite.SqlLiteModels;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace DB.ImplementacaoRepository
+namespace DB.Repository
 {
     public class RepositoryBase<TEntity> : IRepositoryBase<TEntity> where TEntity : SqlModelbase
     {
-        protected new Context<TEntity> Tabela { get; set; }
+        public DbContext DBbContext;
+        public DbSet<TEntity> Contexto { get; set; }
 
         public RepositoryBase()
         {
-            Tabela = new Context<TEntity>();
+            DBbContext = new PublicContext();
         }
 
         public void Delete(Guid id)
         {
             var entidade = Get(id);
-            Tabela.Remove(entidade);
-            Tabela.SaveChanges();
+            Contexto.Remove(entidade);
+            DBbContext.SaveChanges();
         }
 
         public TEntity Get(Guid id)
         {
-           return Tabela.Contexto.Find(id);
+           return Contexto.Find(id);
         }
 
         public IEnumerable<TEntity> GetAll()
         {
-            return Tabela.Contexto.ToList();
+            return Contexto.ToList();
         }
 
         public void Salve(TEntity entity)
         {
-            Tabela.Contexto.Add(entity);
-            Tabela.SaveChanges();
+            Contexto.Add(entity);
+            DBbContext.SaveChanges();
         }
 
         public void Update(TEntity entidade)
         {
-            Tabela.Contexto.Update(entidade);
-            Tabela.SaveChanges();
+            Contexto.Update(entidade);
+            DBbContext.SaveChanges();
         }
     }
 }
