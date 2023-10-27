@@ -7,6 +7,5 @@ namespace DBSqlLite.SqlLiteModels
     public class SqlModelbase
     {
         public Guid Id { get; set; }
-
     }
 }

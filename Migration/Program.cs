@@ -3,7 +3,6 @@ using SQLitePCL;
 
 
 
-
 static void Main()
 {
     Console.WriteLine("Oi mundo");

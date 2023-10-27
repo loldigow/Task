@@ -1,12 +1,11 @@
 ﻿using Core.Interfaces;
 using Core.Modelos;
-using DBSqlLite.Mapper;
 using DBSqlLite.SqlLiteModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace DB.Repository
+namespace DBSqlLite.Repository
 {
     public class TaskSqliteRepository : RepositoryBase<TaskSQLiteModel>, ITaskRepository
     {
@@ -22,9 +21,10 @@ namespace DB.Repository
 
         public IEnumerable<Task> GetAllOnDay(DateTime data)
         {
-            var listaDeAtividades = Contexto.Where(a => a.DataInicioTask.Date == data.Date)
-                                  .ToList();
-            return Mapper.GetMapper().Map<IEnumerable<Task>>(listaDeAtividades);
+            var listaDeAtividades = DBbContext.Set<TaskSQLiteModel>()
+                                              .Where(a => a.DataInicioTask.Date == data.Date)
+                                              .ToList();
+            return Mapper.Mapper.GetMapper().Map<IEnumerable<Task>>(listaDeAtividades);
         }
 
         public void Salve(Task entity)
@@ -33,7 +33,7 @@ namespace DB.Repository
             {
                 entity.Id = Guid.NewGuid();
             }
-            var entidadeMapeada = Mapper.GetMapper().Map<TaskSQLiteModel>(entity);
+            var entidadeMapeada = Mapper.Mapper.GetMapper().Map<TaskSQLiteModel>(entity);
             base.Salve(entidadeMapeada);
         }
 
@@ -55,7 +55,7 @@ namespace DB.Repository
             }
             else
             {
-                var entidade = Mapper.GetMapper().Map<TaskSQLiteModel>(task);
+                var entidade = Mapper.Mapper.GetMapper().Map<TaskSQLiteModel>(task);
                 base.Update(entidade);
             }
         }
@@ -65,12 +65,12 @@ namespace DB.Repository
         Task IRepositoryBase<Task>.Get(Guid id)
         {
             var entidade = base.Get(id);
-            return Mapper.GetMapper().Map<Task>(entidade);
+            return Mapper.Mapper.GetMapper().Map<Task>(entidade);
         }
 
         IEnumerable<Task> IRepositoryBase<Task>.GetAll()
         {
-            return Mapper.GetMapper().Map<List<Task>>(base.GetAll());
+            return Mapper.Mapper.GetMapper().Map<List<Task>>(base.GetAll());
         }
     }
 }

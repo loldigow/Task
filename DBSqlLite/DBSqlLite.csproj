@@ -5,6 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20231027102844_Versao01.cs" />
+    <Compile Remove="Migrations\20231027102844_Versao01.Designer.cs" />
+    <Compile Remove="Migrations\20231027103443_Bancov1.cs" />
+    <Compile Remove="Migrations\20231027103443_Bancov1.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="10.1.1" />
     <PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="1.1.1" />
     <PackageReference Include="Microsoft.Bcl.HashCode" Version="1.1.0" />
