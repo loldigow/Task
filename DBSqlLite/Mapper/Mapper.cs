@@ -1,9 +1,6 @@
 ﻿using AutoMapper;
 using Core.Modelos;
 using DBSqlLite.SqlLiteModels;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace DBSqlLite.Mapper
 {
@@ -20,6 +17,8 @@ namespace DBSqlLite.Mapper
             {
                 cfg.CreateMap<Task, TaskSQLiteModel>();
                 cfg.CreateMap<TaskSQLiteModel, Task>();
+                cfg.CreateMap<Usuario, UsuarioSQLiteModel>();
+                cfg.CreateMap<UsuarioSQLiteModel, Usuario>();
             });
 
             _mapper = mapperConfiguration.CreateMapper();

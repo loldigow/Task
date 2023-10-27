@@ -1,22 +1,20 @@
-﻿using AutoMapper.Internal;
-using DBSqlLite.SqlLiteModels;
+﻿using DBSqlLite.SqlLiteModels;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Data;
 
 namespace DBSqlLite
 {
-    public class PublicContext : DbContext
+    public class AppDbContext : DbContext
     {
-        DbSet<TaskSQLiteModel> BancoTask;
-        DbSet<UsuarioSQLiteModel> BancoUsuario;
-
-        internal PublicContext()
+        public AppDbContext()
         {
             Database.EnsureCreated();
         }
+
+        public AppDbContext(DbContextOptions<AppDbContext> dbContextOptions) : base(dbContextOptions)
+        {
+        }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlite($"Filename={BancoSqlite.CaminhoDoBanco}");
@@ -25,8 +23,9 @@ namespace DBSqlLite
         {
             base.OnModelCreating(modelBuilder);
 
-            //modelBuilder.Entity<TaskSQLiteModel>();
-            //modelBuilder.Entity<UsuarioSQLiteModel>();
+            modelBuilder.Entity<TaskSQLiteModel>();
+            modelBuilder.Entity<UsuarioSQLiteModel>();
         }
     }
+
 }

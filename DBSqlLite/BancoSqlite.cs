@@ -1,30 +1,32 @@
 ﻿using Core.Interfaces;
-using DBSqlLite.Mapper;
 using System;
 using System.IO;
 
-public class BancoSqlite : IBancoDados
+namespace DBSqlLite
 {
-    public string Filepath;
-    public static BancoSqlite Instance;
-
-    public static string CaminhoDoBanco
+    public class BancoSqlite : IBancoDados
     {
-        get
+        public string Filepath;
+        public static BancoSqlite Instance;
+
+        public static string CaminhoDoBanco
         {
-            if(Instance == null)
+            get
             {
-                Instance = new BancoSqlite();
-                var currentLocation = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-                Instance.Filepath = Path.Combine(currentLocation, "BancoDeDados.db3");
-            }
-            return Instance.Filepath;
-            
-        }
-    }
+                if (Instance == null)
+                {
+                    Instance = new BancoSqlite();
+                    var currentLocation = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+                    Instance.Filepath = Path.Combine(currentLocation, "BancoDeDados.db3");
+                }
+                return Instance.Filepath;
 
-    public void Init()
-    {
-        Mapper.CreateMapper();
+            }
+        }
+
+        public void Init()
+        {
+            Mapper.Mapper.CreateMapper();
+        }
     }
 }

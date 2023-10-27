@@ -1,12 +1,11 @@
 ﻿using Core.Interfaces;
 using Core.Modelos;
-using DBSqlLite.Mapper;
 using DBSqlLite.SqlLiteModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace DB.Repository
+namespace DBSqlLite.Repository
 {
     public class UsuarioSqliteRepository : RepositoryBase<UsuarioSQLiteModel>, IUsuarioRepository
     {
@@ -15,14 +14,15 @@ namespace DB.Repository
             var usuario = base.GetAll().FirstOrDefault();
             if (usuario != null)
             {
-                Mapper.GetMapper().Map<Usuario>(usuario);
+                return Mapper.Mapper.GetMapper().Map<Usuario>(usuario);
             }
             return null;
         }
 
         public void Salve(Usuario entity)
         {
-            throw new NotImplementedException();
+            var usuario = Mapper.Mapper.GetMapper().Map<UsuarioSQLiteModel>(entity);
+            Salve(usuario);
         }
 
         public void Update(Usuario id)
