@@ -4,6 +4,9 @@
              Title="{Binding NomeTela}"
              BackgroundColor="{AppThemeBinding Light=#DFECF6, Dark=#225177}"
              x:Class="task.View.DetalheTask">
+    <!--<ContentPage.BindingContext>
+        <viewmodel:DetalheTaskViewModel></viewmodel:DetalheTaskViewModel>
+    </ContentPage.BindingContext>-->
     <ContentPage.Content>
         <StackLayout Spacing="0">
             <ScrollView VerticalOptions="FillAndExpand">
@@ -11,23 +14,29 @@
 
                     <controls:Input Texto="{Binding DescricaoTask, Mode=TwoWay}"
                                 Descricao="Descrição da task:"
-                                Padding="20,20,20,5"></controls:Input>
+                                IsEnabled="{Binding NaoEhNovoRegistro}"
+                                Padding="20,20,20,5"/>
+                    <controls:PrioridadeSelection Prioridade="{Binding Prioridade, Mode=TwoWay}"
+                                                  Padding="20,5,20,5"
+                                                  IsEnabled="{Binding NaoEhNovoRegistro}">
+                        
+                    </controls:PrioridadeSelection>
                     <controls:DataHoraInput Padding="20,5" 
-                                        
+                                        IsEnabled="{Binding NaoEhNovoRegistro}"
                                         Data="{Binding DataTask, Mode=TwoWay}" 
                                         HoraInicio="{Binding HoraInicio, Mode=TwoWay}" 
-                                        HoraFim="{Binding HoraFim, Mode=TwoWay}"
-                                        
+                                        HoraFim="{Binding HoraFim, Mode=TwoWay}"                                        
                                         DescricaoInput="Data inicio:"></controls:DataHoraInput>
 
                     <controls:Input Texto="{Binding ObservacaoTask, Mode=TwoWay}"
                                 Descricao="Observações:"
                                 MultiLine="True"
-                                Padding="20,5,20,5"></controls:Input>
+                                Padding="20,5,20,5"
+                                IsEnabled="{Binding NaoEhNovoRegistro}"></controls:Input>
                     <Frame Margin="20,5,20,0" 
-                       CornerRadius="15"
-                           IsVisible="{Binding NaoEhNovoRegistro}"
-                       >
+                           CornerRadius="15"
+                           BackgroundColor="{AppThemeBinding Light=White, Dark=#1c4563}" 
+                           IsVisible="{Binding NaoEhNovoRegistro}">
                         <StackLayout >
                             <controls:RepeteTask  ConfiguracoesDeRpeticao="{Binding ConfiguracoesDerRpeticao}"></controls:RepeteTask>
                         </StackLayout>

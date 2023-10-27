@@ -1,14 +1,21 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:controls="clr-namespace:task.controls"
              x:Class="task.controls.TitleLabel">
-  <ContentView.Content>
-      <StackLayout Spacing="-1" VerticalOptions="Center">
+    <ContentView.Content>
+        <StackLayout Spacing="-1" VerticalOptions="Center">
             <Label Text="" 
                    x:Name="LabelTitulo"
                    FontAttributes="Bold" 
-                   FontSize="25"></Label>
-            <Label x:Name="LabelValor"></Label>
-      </StackLayout>
-  </ContentView.Content>
+                   FontSize="25"/>
+            <StackLayout Orientation="Horizontal">
+                <controls:LabelAwesome x:Name="LabelIconAwesome" 
+                                       Text="&#xf111;" 
+                                       FontSize="15"
+                                       IsVisible="false"
+                                       VerticalTextAlignment="Center"/>
+                <Label x:Name="LabelValor"></Label>
+            </StackLayout>
+        </StackLayout>
+    </ContentView.Content>
 </ContentView>

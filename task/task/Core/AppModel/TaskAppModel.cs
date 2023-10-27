@@ -12,6 +12,8 @@ namespace task.Core.AppModel
         public DateTime DataInicioTask { get; set; }
         public DateTime DataFimTask { get; set; }
         public Color CorTask { get; set; }
+        public Color CorIconTask { get; set; }
+        public int Prioridade { get; set; }
         public string HorarioFormatado => $"Das {DataInicioTask.ObtenhaDescricaoIntervalo()} às {DataFimTask.ObtenhaDescricaoIntervalo()}";
     }
 }
