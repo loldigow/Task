@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Core.Enuns;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -13,6 +14,7 @@ namespace Core.Modelos
         public DateTime DataInicioTask { get; set; }
         public DateTime DataFimTask { get; set; }
         public Guid InsertID { get; set; }
+        public NivelDePrioridadeEnum Prioridade{get;set;}
 
     }
 }

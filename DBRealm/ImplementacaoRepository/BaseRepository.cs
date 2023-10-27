@@ -22,7 +22,7 @@ namespace DBRealm.ImplementacaoRepository
         public static RealmConfiguration config =>
             new RealmConfiguration()
             {
-                SchemaVersion = 3,
+                SchemaVersion = 4,
                 MigrationCallback = (migration, oldSchemaVersion) =>
                 {
                     // potentially lengthy data migration

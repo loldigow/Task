@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="task.controls.PrioridadeSelection">
+    <ContentView.Content>
+        <Frame CornerRadius="10" BackgroundColor="{AppThemeBinding Light=White, Dark=#1c4563}" >
+            <Grid >
+                <Label Text="Prioridade:" 
+                       VerticalOptions="Start"
+                       FontSize="20"></Label>
+                <StackLayout Orientation="Horizontal" 
+                             HorizontalOptions="End"
+                             Spacing="25">
+                    <StackLayout >
+                        <Frame BorderColor="Green" 
+                               WidthRequest="0.5" 
+                               x:Name="Check0"
+                               HeightRequest="0.5" 
+                               CornerRadius="20">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" CommandParameter="0"></TapGestureRecognizer>
+                            </Frame.GestureRecognizers>
+                        </Frame>
+                        <Label Text="Baixa" 
+                               VerticalTextAlignment="Center" 
+                               HorizontalTextAlignment="Center"></Label>
+                    </StackLayout>
+                    <StackLayout >
+                        <Frame BorderColor="Yellow" 
+                               WidthRequest="1" 
+                               x:Name="Check1"
+                               HeightRequest="1" 
+                               CornerRadius="20">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" CommandParameter="1"></TapGestureRecognizer>
+                            </Frame.GestureRecognizers>
+                        </Frame>
+                        <Label Text="Média" 
+                               VerticalTextAlignment="Center" 
+                               HorizontalTextAlignment="Center"></Label>
+                    </StackLayout>
+                    <StackLayout  >
+                        <Frame BorderColor="Red" 
+                               WidthRequest="1" 
+                               HeightRequest="1" 
+                               x:Name="Check2"
+                               CornerRadius="20">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" CommandParameter="2"></TapGestureRecognizer>
+                            </Frame.GestureRecognizers>
+                        </Frame>
+                        <Label Text="Alta" 
+                               VerticalTextAlignment="Center" 
+                               HorizontalTextAlignment="Center"></Label>
+                    </StackLayout>
+                </StackLayout>
+            </Grid>
+        </Frame>
+    </ContentView.Content>
+</ContentView>

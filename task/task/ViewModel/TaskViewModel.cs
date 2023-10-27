@@ -68,7 +68,9 @@ namespace task.ViewModel
                     Realizada = x.Realizada,
                     DataFimTask = x.DataFimTask,
                     DataInicioTask = x.DataInicioTask,
-                    CorTask = Utilies.ProcessoERetorneCorDeTask(x.DataInicioTask, x.DataFimTask)
+                    CorTask = Utilies.ProcessoERetorneCorDeTask(x.DataInicioTask, x.DataFimTask),
+                    Prioridade = (int)x.Prioridade,
+                    CorIconTask = Utilies.ProcesseCorPrioridade(x.Prioridade)
                 });
 
                 ListaTasksDoDia = listaConvertida;

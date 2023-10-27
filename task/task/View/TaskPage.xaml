@@ -64,18 +64,17 @@
                                         <TapGestureRecognizer Command="{Binding Source={x:Reference PaginaDeTasks}, Path=BindingContext.AbraTaskCommand}" 
                                                                   CommandParameter="{Binding .}"/>
                                     </StackLayout.GestureRecognizers>
-                                    <StackLayout>
+                                    <StackLayout >
                                         <controls:CheckBoxCustom IsChecked="{Binding Realizada}" 
                                                                  IsEnabled="{Binding Realizada, Converter={StaticResource InverseBoleanConverter}}"
                                                                  CheckedCommand="{Binding Source={x:Reference PaginaDeTasks}, Path=BindingContext.ConcluaTarefaCommand}"
                                                                  CheckedCommandParameter="{Binding .}"
-                                                  Color="{AppThemeBinding Light=#122B40, Dark=White}">
-
-                                        </controls:CheckBoxCustom>
+                                                  Color="{AppThemeBinding Light=#122B40, Dark=White}"/>
                                     </StackLayout>
                                     <StackLayout>
                                         <controls:TitleLabel Titulo="{Binding NomeTask}"
                                                              CorTexto="{Binding CorTask}"
+                                                             IconTextAwesomeCor="{Binding CorIconTask}"
                                                              Valor="{Binding HorarioFormatado}"></controls:TitleLabel>
                                     </StackLayout>
                                 </StackLayout>

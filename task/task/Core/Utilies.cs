@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Core.Enuns;
+using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -29,6 +30,17 @@ namespace task.Core
             {
                 return theme == Theme.Dark ? Color.FromHex("#182f00") : Color.FromHex("#182f00"); 
 
+            }
+        }
+
+        internal static Color ProcesseCorPrioridade(NivelDePrioridadeEnum prioridade)
+        {
+            switch(prioridade)
+            {
+                case NivelDePrioridadeEnum.Baixo: return Color.Green;
+                case NivelDePrioridadeEnum.Medio: return Color.Yellow;
+                case NivelDePrioridadeEnum.Alto: return Color.Red;
+                default: return Color.White;
             }
         }
     }

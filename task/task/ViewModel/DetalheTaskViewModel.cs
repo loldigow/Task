@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Core.Enuns;
 using Core.Interfaces;
 using Core.Modelos;
 using System;
@@ -48,6 +49,8 @@ namespace task.ViewModel
         [ObservableProperty]
         bool naoEhNovoRegistro;
 
+        [ObservableProperty]
+        int prioridade;
 
 
 
@@ -68,6 +71,11 @@ namespace task.ViewModel
             }
         }
 
+        public DetalheTaskViewModel()
+        {
+            
+        }
+
         public DetalheTaskViewModel(DateTime data)
         {
             CrieNovaTask(data);
@@ -85,6 +93,7 @@ namespace task.ViewModel
             DescricaoBotao = task.Realizada ? FuncaoTaskEnum.Fechar : FuncaoTaskEnum.Concluir;
             Finalizado = task.Realizada;
             NaoEhNovoRegistro = false;
+            Prioridade = task.Prioridade;
         }
 
         private void CrieNovaTask(DateTime? data = null)
@@ -99,6 +108,7 @@ namespace task.ViewModel
             ConfiguracoesDerRpeticao = new();
             _id = Guid.Empty;
             NaoEhNovoRegistro = true;
+            Prioridade = (int)NivelDePrioridadeEnum.Baixo;
         }
 
         [RelayCommand]
@@ -269,7 +279,8 @@ namespace task.ViewModel
                 Realizada = false,
                 DataInicioTask = data.Date.AddHours(HoraInicio.Hours).AddMinutes(HoraInicio.Minutes),
                 DataFimTask = data.Date.AddHours(HoraFim.Hours).AddMinutes(HoraFim.Minutes),
-                ObservacaoTask = ObservacaoTask
+                ObservacaoTask = ObservacaoTask,
+                Prioridade = (NivelDePrioridadeEnum)Prioridade
             };
         }
     }

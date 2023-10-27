@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace task.controls
 {
@@ -16,6 +17,7 @@ namespace task.controls
         public static readonly BindableProperty CorTextoProperty = BindableProperty.Create(nameof(CorTexto), typeof(Color), typeof(TitleLabel));
         public static readonly BindableProperty TituloProperty = BindableProperty.Create(nameof(Titulo), typeof(string), typeof(TitleLabel));
         public static readonly BindableProperty ValorProperty = BindableProperty.Create(nameof(Valor), typeof(string), typeof(TitleLabel));
+        public static readonly BindableProperty IconTextAwesomeCorProperty = BindableProperty.Create(nameof(IconTextAwesomeCor), typeof(Color), typeof(TitleLabel));
         public Color CorTexto
         {
             get { return (Color)GetValue(CorTextoProperty); }
@@ -31,6 +33,13 @@ namespace task.controls
             get { return (string)GetValue(ValorProperty); }
             set { SetValue(ValorProperty, value); }
         }
+        public Color IconTextAwesomeCor
+        {
+            get { return (Color)GetValue(IconTextAwesomeCorProperty); }
+            set { SetValue(IconTextAwesomeCorProperty, value); }
+        }
+
+
         public TitleLabel()
         {
             InitializeComponent();
@@ -39,13 +48,26 @@ namespace task.controls
         {
             base.OnPropertyChanged(propertyName);
 
-            if(propertyName == nameof(Titulo)) LabelTitulo.Text = Titulo;
-            if(propertyName == nameof(Valor)) LabelValor.Text = Valor;
+            if (propertyName == nameof(Titulo))
+            {
+                LabelTitulo.Text = Titulo;
+            }
 
-            if(propertyName == nameof(CorTexto))
+            if (propertyName == nameof(Valor))
+            {
+                LabelValor.Text = Valor;
+            }
+
+            if (propertyName == nameof(CorTexto))
             {
                 LabelTitulo.TextColor = CorTexto;
-                LabelValor.TextColor = CorTexto;    
+                LabelValor.TextColor = CorTexto;
+            }
+
+            if (propertyName == nameof(IconTextAwesomeCor))
+            {
+                LabelIconAwesome.TextColor = IconTextAwesomeCor;
+                LabelIconAwesome.IsVisible = true;
             }
         }
     }
