@@ -17,5 +17,6 @@ namespace DBRealm.RealmModels
         public string HoraInicioTask { get; set; }
         public string DataFimTask { get; set; }
         public string HoraFimTask { get; set; }
+        public int Prioridade { get; set; }
     }
 }

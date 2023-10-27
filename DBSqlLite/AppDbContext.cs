@@ -8,7 +8,7 @@ namespace DBSqlLite
     {
         public AppDbContext()
         {
-            Database.EnsureCreated();
+            Database.Migrate();
         }
 
         public AppDbContext(DbContextOptions<AppDbContext> dbContextOptions) : base(dbContextOptions)

@@ -13,5 +13,6 @@ namespace DBSqlLite.SqlLiteModels
         public DateTime DataInicioTask { get; set; }
         public DateTime DataFimTask { get; set; }
         public Guid InsertID { get; set; }
+        public int Prioridade { get; set; }
     }
 }

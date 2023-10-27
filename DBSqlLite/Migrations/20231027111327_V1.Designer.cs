@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DBSqlLite.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20231027104510_Bancov1")]
-    partial class Bancov1
+    [Migration("20231027111327_V1")]
+    partial class V1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
