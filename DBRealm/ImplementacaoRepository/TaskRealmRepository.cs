@@ -12,8 +12,12 @@ namespace DBRealm.ImplementacaoRepository
         public Task Get(Guid id)
         {
             var guidId = id.ToString();
-            var selectedStudent = _realm.All<TaskRealmModel>().First(b => b.Id == guidId);
-            return Mapper.GetMapper().Map<Task>(selectedStudent);
+            var task = _realm.Find<TaskRealmModel>(guidId);
+            if (task != null)
+            {
+                return Mapper.GetMapper().Map<Task>(task);
+            }
+            return null;
         }
         public IEnumerable<Task> GetAll()
         {
@@ -23,7 +27,7 @@ namespace DBRealm.ImplementacaoRepository
 
         public void Salve(Task taskModel)
         {
-            if(taskModel.Id ==  Guid.Empty)
+            if (taskModel.Id == Guid.Empty)
             {
                 taskModel.Id = Guid.NewGuid();
             }
